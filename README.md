@@ -1,1 +1,1 @@
-# konpaira
+# konpairu
