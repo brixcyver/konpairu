@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Konpairu"
     Shell.FlyoutBehavior="{OnIdiom Phone=Disabled,
-                                   Default=Locked}">
+                                   Default=Locked}"
+    Shell.FlyoutWidth="150">
 
     <ShellContent
         Title="Konpairu"

@@ -25,4 +25,5 @@
     <Color x:Key="MacchiatoSurface0">#363a4f</Color>
     <Color x:Key="MacchiatoBase">#24273a</Color>
     <Color x:Key="MacchiatoMantle">#1e2030</Color>
+    <Color x:Key="MacchiatoCrust">#181926</Color>
 </ResourceDictionary>
