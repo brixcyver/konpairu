@@ -32,7 +32,6 @@ namespace Konpairu
         [ObservableProperty]
         public string expression;
 
-        private bool hasFile;
         private bool isLexicallyCorrect;
         private bool isSyntacticallyCorrect;
         private bool isSemanticallyCorrect;
@@ -70,7 +69,7 @@ namespace Konpairu
                     return;
                 }
 
-                using var stream = await javaFile.OpenReadAsync(); 
+                using var stream = await javaFile.OpenReadAsync();
 
                 using (StreamReader sr = new(stream))
                 {
@@ -129,6 +128,34 @@ namespace Konpairu
         }
 
         [RelayCommand]
+        private async Task SyntacticalAnalysisAsync()
+        {
+            if (IsBusy)
+            {
+                return;
+            }
+
+            IsBusy = true;
+
+            try
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Correct!",
+                    $"The expression has a valid syntax", "OK");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+
+                await Shell.Current.CurrentPage.DisplayAlert("Error!",
+                    $"Unable to analyze syntax: {ex.Message}", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        [RelayCommand]
         private async Task SemanticAnalysisAsync()
         {
             if (IsBusy)
@@ -156,34 +183,6 @@ namespace Konpairu
             }
         }
 
-        [RelayCommand]
-        private async Task SyntacticalAnalysisAsync()
-        {
-            if (IsBusy)
-            {
-                return;
-            }
-
-            IsBusy = true;
-
-            try
-            {
-                await Shell.Current.CurrentPage.DisplayAlert("Correct!",
-                    $"The expression has a valid syntax", "OK");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-
-                await Shell.Current.CurrentPage.DisplayAlert("Error!",
-                    $"Unable to analyze syntax: {ex.Message}", "OK");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        
         [RelayCommand]
         private async Task ClearExpressionAsync()
         {
@@ -214,7 +213,7 @@ namespace Konpairu
                 isSemanticallyCorrect = false;
 
                 await Shell.Current.CurrentPage.DisplayAlert("Success!",
-                    $"The expression has a valid lexemes", "OK");
+                    $"The expression has been cleared", "OK");
             }
             catch (Exception ex)
             {
@@ -228,6 +227,5 @@ namespace Konpairu
                 IsBusy = false;
             }
         }
-
     }
 }
