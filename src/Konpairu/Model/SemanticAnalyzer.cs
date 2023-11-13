@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Konpairu.Model
+namespace Konpairu.Models;
+
+public class SemanticAnalyzer
 {
-    public class SemanticAnalyzer
+    public static bool IsSemanticallyCorrect(string expression)
     {
-        public static bool IsSemanticallyCorrect(string expression)
-        {
-            return true;
-        }
+        return true;
     }
 }

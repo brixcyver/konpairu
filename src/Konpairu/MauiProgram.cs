@@ -21,6 +21,9 @@ namespace Konpairu
 		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddSingleton<KonpairuPage>();
+            builder.Services.AddSingleton<KonpairuViewModel>();
+
             return builder.Build();
         }
     }

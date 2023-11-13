@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Konpairu.Model
+namespace Konpairu.Models;
+
+public class LexicalAnalyzer
 {
-    public class LexicalAnalyzer
+    public static bool IsLexicallyCorrect(string expression)
     {
-        public static bool IsLexicallyCorrect(string expression)
-        {
-            return true;
-        }
+        return true;
     }
 }
