@@ -37,7 +37,8 @@ namespace Konpairu
 
             try
             {
-
+                await Shell.Current.CurrentPage.DisplayAlert("Correct!",
+                    $"The expression has a valid lexemes", "OK");
             }
             catch (Exception ex)
             {
@@ -64,7 +65,8 @@ namespace Konpairu
 
             try
             {
-
+                await Shell.Current.CurrentPage.DisplayAlert("Correct!",
+                    $"The expression has a valid semantics", "OK");
             }
             catch (Exception ex)
             {
@@ -91,7 +93,8 @@ namespace Konpairu
 
             try
             {
-
+                await Shell.Current.CurrentPage.DisplayAlert("Correct!",
+                    $"The expression has a valid syntax", "OK");
             }
             catch (Exception ex)
             {
