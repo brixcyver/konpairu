@@ -14,6 +14,10 @@ namespace Konpairu
         public KonpairuViewModel()
         {
             Title = "Konpairu";
+
+            isLexicallyCorrect = false;
+            isSyntacticallyCorrect = false;
+            isSemanticallyCorrect = false;
         }
 
         [ObservableProperty]
@@ -27,6 +31,11 @@ namespace Konpairu
 
         [ObservableProperty]
         public string expression;
+
+        private bool hasFile;
+        private bool isLexicallyCorrect;
+        private bool isSyntacticallyCorrect;
+        private bool isSemanticallyCorrect;
 
         [RelayCommand]
         private async Task ChooseFileAsync()
@@ -63,7 +72,7 @@ namespace Konpairu
 
                 using var stream = await javaFile.OpenReadAsync(); 
 
-                using (StreamReader sr = new StreamReader(stream))
+                using (StreamReader sr = new(stream))
                 {
                     StringBuilder sb = new();
 
@@ -199,6 +208,10 @@ namespace Konpairu
             try
             {
                 Expression = string.Empty;
+
+                isLexicallyCorrect = false;
+                isSyntacticallyCorrect = false;
+                isSemanticallyCorrect = false;
 
                 await Shell.Current.CurrentPage.DisplayAlert("Success!",
                     $"The expression has a valid lexemes", "OK");

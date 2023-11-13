@@ -43,6 +43,8 @@
                                             Dark={StaticResource LatteText}}" />
             <Editor
                 Margin="0,5"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LatteSurface2},
+                                                  Dark={StaticResource MacchiatoSurface2}}"
                 FontSize="20"
                 HeightRequest="300"
                 Text="{Binding Expression}" />
