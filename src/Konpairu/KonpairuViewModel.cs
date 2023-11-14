@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Konpairu.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,7 +18,8 @@ namespace Konpairu
 
             isLexicallyCorrect = false;
             isSyntacticallyCorrect = false;
-            isSemanticallyCorrect = false;
+
+            prevExpression = string.Empty;
         }
 
         [ObservableProperty]
@@ -32,9 +34,10 @@ namespace Konpairu
         [ObservableProperty]
         public string expression;
 
+        private string prevExpression;
+
         private bool isLexicallyCorrect;
         private bool isSyntacticallyCorrect;
-        private bool isSemanticallyCorrect;
 
         [RelayCommand]
         private async Task ChooseFileAsync()
@@ -50,7 +53,7 @@ namespace Konpairu
             {
                 var javaFile = await FilePicker.PickAsync(new PickOptions
                 {
-                    PickerTitle = "Choose a java file"
+                    PickerTitle = "Choose a Java file"
                 });
 
                 if (javaFile is null)
@@ -64,7 +67,7 @@ namespace Konpairu
                 if (!javaFile.FileName.EndsWith("java", StringComparison.OrdinalIgnoreCase))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Invalid File!",
-                        $"File chosen is not a java file", "OK");
+                        $"File chosen is not a Java file", "OK");
 
                     return;
                 }
@@ -111,8 +114,27 @@ namespace Konpairu
 
             try
             {
+                if (Expression is null || Expression == string.Empty)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Empty Expression!",
+                        $"The expression is empty", "OK");
+
+                    return;
+                }
+
+                if (!LexicalAnalyzer.IsLexicallyCorrect(Expression.Replace("\r", "")))
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
+                        $"The expression is lexically incorrect", "ok");
+
+                    return;
+                }
+
+                isLexicallyCorrect = true;
+                prevExpression = Expression;
+
                 await Shell.Current.CurrentPage.DisplayAlert("Correct!",
-                    $"The expression has a valid lexemes", "OK");
+                    $"The expression was a valid lexemes", "OK");
             }
             catch (Exception ex)
             {
@@ -139,8 +161,38 @@ namespace Konpairu
 
             try
             {
+                if (Expression != prevExpression || !isLexicallyCorrect)
+                {
+                    isLexicallyCorrect = false;
+                    isSyntacticallyCorrect = false;
+
+                    await Shell.Current.CurrentPage.DisplayAlert("Cannot Validate!",
+                        $"Please analyze lexically first", "OK");
+
+                    return;
+                }
+
+                if (!SyntaxAnalyzer.IsSyntacticallyCorrect(Expression.Replace("\r", "")))
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
+                        $"The expression is syntactically incorrect", "ok");
+
+                    return;
+                }
+
+                if (Expression is null || Expression == string.Empty)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Empty Expression!",
+                        $"The expression is empty", "OK");
+
+                    return;
+                }
+
+                isSyntacticallyCorrect = true;
+                prevExpression = Expression;
+
                 await Shell.Current.CurrentPage.DisplayAlert("Correct!",
-                    $"The expression has a valid syntax", "OK");
+                    $"The expression is a valid syntax", "OK");
             }
             catch (Exception ex)
             {
@@ -167,6 +219,28 @@ namespace Konpairu
 
             try
             {
+                if (Expression != prevExpression)
+                {
+                    isLexicallyCorrect = false;
+                    isSyntacticallyCorrect = false;
+                }
+
+                if (!isSyntacticallyCorrect)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Cannot Validate!",
+                        $"Please analyze syntactically first", "OK");
+
+                    return;
+                }
+
+                if (Expression is null || Expression == string.Empty)
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Empty Expression!",
+                        $"The expression is empty", "OK");
+
+                    return;
+                }
+
                 await Shell.Current.CurrentPage.DisplayAlert("Correct!",
                     $"The expression has a valid semantics", "OK");
             }
@@ -207,10 +281,6 @@ namespace Konpairu
             try
             {
                 Expression = string.Empty;
-
-                isLexicallyCorrect = false;
-                isSyntacticallyCorrect = false;
-                isSemanticallyCorrect = false;
 
                 await Shell.Current.CurrentPage.DisplayAlert("Success!",
                     $"The expression has been cleared", "OK");
