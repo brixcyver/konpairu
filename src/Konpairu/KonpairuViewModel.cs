@@ -219,10 +219,13 @@ namespace Konpairu
 
             try
             {
-                if (Expression != prevExpression)
+                if (Expression != prevExpression || !isSyntacticallyCorrect)
                 {
                     isLexicallyCorrect = false;
                     isSyntacticallyCorrect = false;
+
+                    await Shell.Current.CurrentPage.DisplayAlert("Cannot Validate!",
+                        $"Please analyze syntactically first", "OK");
                 }
 
                 if (!isSyntacticallyCorrect)
