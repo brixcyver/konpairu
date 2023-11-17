@@ -13,4 +13,9 @@
         ContentTemplate="{DataTemplate local:KonpairuPage}"
         Route="KonpairuPage" />
 
+    <ShellContent
+        Title="About"
+        ContentTemplate="{DataTemplate local:AboutPage}"
+        Route="AboutPage" />
+
 </Shell>

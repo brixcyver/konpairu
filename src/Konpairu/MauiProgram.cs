@@ -18,11 +18,12 @@ namespace Konpairu
                 });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<KonpairuPage>();
             builder.Services.AddSingleton<KonpairuViewModel>();
+            builder.Services.AddSingleton<AboutPage>();
 
             return builder.Build();
         }
