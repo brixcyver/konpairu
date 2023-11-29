@@ -6,9 +6,4 @@ public partial class AboutPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
-    private void David_Tapped(object sender, TappedEventArgs e)
-    {
-
-    }
 }

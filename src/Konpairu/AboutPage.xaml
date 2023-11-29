@@ -97,20 +97,6 @@
                 HorizontalOptions="Center"
                 Text="Konpairu"
                 VerticalOptions="Center" />
-            <!--<Frame
-                Padding="0"
-                CornerRadius="1000"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
-                <Image
-                    Aspect="Fill"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="David_Tapped" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </Frame>-->
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

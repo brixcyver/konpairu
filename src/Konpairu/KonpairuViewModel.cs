@@ -226,6 +226,8 @@ namespace Konpairu
 
                     await Shell.Current.CurrentPage.DisplayAlert("Cannot Validate!",
                         $"Please analyze syntactically first", "OK");
+
+                    return;
                 }
 
                 if (!isSyntacticallyCorrect)
