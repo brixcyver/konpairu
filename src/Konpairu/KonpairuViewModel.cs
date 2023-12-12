@@ -175,7 +175,7 @@ namespace Konpairu
                 if (!SyntaxAnalyzer.IsSyntacticallyCorrect(Expression.Replace("\r", "")))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
-                        $"The expression is syntactically incorrect", "ok");
+                        $"The expression is syntactically incorrect", "OK");
 
                     return;
                 }
