@@ -125,7 +125,7 @@ namespace Konpairu
                 if (!LexicalAnalyzer.IsLexicallyCorrect(Expression.Replace("\r", "")))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
-                        $"The expression is lexically incorrect", "ok");
+                        $"The expression is lexically incorrect", "OK");
 
                     return;
                 }

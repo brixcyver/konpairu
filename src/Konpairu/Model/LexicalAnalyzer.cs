@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Konpairu.Model;
+using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace Konpairu.Models;
@@ -13,14 +14,7 @@ public class LexicalAnalyzer
     {
         InitializeDataTypes();
 
-        List<string> lexemes = new();
-        string[] expressionParts = Regex.Split(expression, "\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-        foreach (string expressionPart in expressionParts)
-        {
-            lexemes.AddRange(Regex.Split(expressionPart, "(?=;)|(?<=;)|(?<==)|(?==)"));
-        }
-
-        lexemes.RemoveAll(string.IsNullOrEmpty);
+        List<string> lexemes = Common.SplitExpression(expression);
 
         foreach (string lexeme in lexemes)
         {
@@ -41,10 +35,15 @@ public class LexicalAnalyzer
 
     public static void InitializeDataTypes()
     {
+        dataTypes.Clear();
+        identifiers.Clear();
+        tokens.Clear();
+
         dataTypes.Add("int");
         dataTypes.Add("double");
         dataTypes.Add("char");
         dataTypes.Add("String");
+
 
         identifiers.Add("<identifier>");
         identifiers.Add("<data_type>");
