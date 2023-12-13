@@ -22,7 +22,7 @@ public class LexicalAnalyzer
             tokens.Add(token);
         }
 
-        tokens.RemoveAll(string.IsNullOrEmpty);
+        //tokens.RemoveAll(string.IsNullOrEmpty);
 
         foreach (string token in tokens)
         {
@@ -45,6 +45,11 @@ public class LexicalAnalyzer
         dataTypes.Add("double");
         dataTypes.Add("char");
         dataTypes.Add("String");
+        dataTypes.Add("boolean");
+        dataTypes.Add("float");
+        dataTypes.Add("long");
+        dataTypes.Add("short");
+        dataTypes.Add("byte");
 
 
         identifiers.Add("<identifier>");
