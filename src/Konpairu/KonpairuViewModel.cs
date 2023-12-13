@@ -246,6 +246,14 @@ namespace Konpairu
                     return;
                 }
 
+                if (!SemanticAnalyzer.IsSemanticallyCorrect(Expression.Replace("\r", "")))
+                {
+                    await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
+                        $"The expression is syntactically incorrect", "OK");
+
+                    return;
+                }
+
                 await Shell.Current.CurrentPage.DisplayAlert("Correct!",
                     $"The expression has a valid semantics", "OK");
             }
