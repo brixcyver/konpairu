@@ -51,6 +51,7 @@
                 BackgroundColor="{AppThemeBinding Light={StaticResource LatteSurface2},
                                                   Dark={StaticResource MacchiatoSurface2}}"
                 FontSize="20"
+                IsTextPredictionEnabled="False"
                 HeightRequest="300"
                 Text="{Binding Expression}" />
             <Button
