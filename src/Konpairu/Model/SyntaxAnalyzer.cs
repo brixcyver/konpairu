@@ -62,6 +62,10 @@ public class SyntaxAnalyzer
         dataTypes.Add("char");
         dataTypes.Add("String");
         dataTypes.Add("boolean");
+        dataTypes.Add("float");
+        dataTypes.Add("long");
+        dataTypes.Add("short");
+        dataTypes.Add("byte");
 
         identifiers.Add("<identifier>");
         identifiers.Add("<data_type>");
