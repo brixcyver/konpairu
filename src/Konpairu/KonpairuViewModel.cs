@@ -249,7 +249,7 @@ namespace Konpairu
                 if (!SemanticAnalyzer.IsSemanticallyCorrect(Expression.Replace("\r", "")))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
-                        $"The expression is syntactically incorrect", "OK");
+                        $"The expression is semantically incorrect", "OK");
 
                     return;
                 }
