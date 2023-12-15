@@ -78,7 +78,7 @@ public class SyntaxAnalyzer
     {
         if (lexeme == "true" || lexeme == "false") return true;
 
-        if (lexeme[0] == '\"' && lexeme[lexeme.Length - 1] == '\"')
+        if (lexeme[0] == '\"' && lexeme[^1] == '\"')
             return true;
         else if (lexeme.Length == 3 && lexeme[0] == '\'' && lexeme[2] == '\'')
             return true;
