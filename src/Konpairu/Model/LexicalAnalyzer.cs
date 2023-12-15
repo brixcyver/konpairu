@@ -22,8 +22,6 @@ public class LexicalAnalyzer
             tokens.Add(token);
         }
 
-        //tokens.RemoveAll(string.IsNullOrEmpty);
-
         foreach (string token in tokens)
         {
             if (!identifiers.Contains(token))

@@ -7,20 +7,25 @@ using System.Threading.Tasks;
 
 namespace Konpairu.Model
 {
-    public static class Common
+    public static partial class Common
     {
         public static List<string> SplitExpression(string expression)
         {
             List<string> parts = new();
-            string[] firstSplit = Regex.Split(expression, "\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+            string[] firstSplit = SymbolSplit().Split(expression);
             foreach (string split in firstSplit)
             {
-                parts.AddRange(Regex.Split(split, "(?=;)|(?<=;)|(?<==)|(?==)"));
+                parts.AddRange(QuoteSplit().Split(split));
             }
 
             parts.RemoveAll(string.IsNullOrEmpty);
 
             return parts;
         }
+
+        [GeneratedRegex("(?=;)|(?<=;)|(?<==)|(?==)")]
+        private static partial Regex QuoteSplit();
+        [GeneratedRegex("\\s+(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)")]
+        private static partial Regex SymbolSplit();
     }
 }
