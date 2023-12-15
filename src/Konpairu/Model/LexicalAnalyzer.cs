@@ -123,6 +123,8 @@ public class LexicalAnalyzer
 
     private static bool IsValue(string lexeme)
     {
+        if (lexeme == "true" || lexeme == "false") return true;
+
         if (lexeme[0] == '\"' && lexeme[lexeme.Length - 1] == '\"')
             return true;
         else if (lexeme.Length == 3 && lexeme[0] == '\'' && lexeme[2] == '\'')
