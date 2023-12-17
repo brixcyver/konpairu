@@ -14,7 +14,7 @@
   </a>
 </p>
 
-Konpairu is a graphical user interface (GUI) application designed as a .NET MAUI (Multi-platform App UI) solution. This application incorporates lexical, syntactical, and semantic analysis features.
+Konpairu is a graphical user interface (GUI) application created using .NET MAUI (Multi-platform App UI). This application incorporates lexical, syntactical, and semantic analysis features.
 
 ## Screenshots
 <p align="center">
