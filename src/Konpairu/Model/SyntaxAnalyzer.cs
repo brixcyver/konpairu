@@ -9,9 +9,9 @@ namespace Konpairu.Models;
 
 public class SyntaxAnalyzer
 {
-    private static List<string> dataTypes = new();
-    private static List<string> identifiers = new();
-    private static List<string> tokens = new();
+    private static readonly List<string> dataTypes = new();
+    private static readonly List<string> identifiers = new();
+    private static readonly List<string> tokens = new();
 
     public static bool IsSyntacticallyCorrect(string expression)
     {
@@ -26,7 +26,7 @@ public class SyntaxAnalyzer
 
         if (tokens[0] != "<data_type>") return false;
         if (tokens[1] != "<identifier>") return false;
-        if (tokens[2] == "<delimiter>" && tokens.Count() == 3) return true;
+        if (tokens[2] == "<delimiter>" && tokens.Count == 3) return true;
 
         if (tokens[2] != "<assignment_operator>") return false;
         if (tokens[3] != "<value>") return false;

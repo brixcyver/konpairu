@@ -6,9 +6,9 @@ namespace Konpairu.Models;
 
 public class LexicalAnalyzer
 {
-    private static List<string> dataTypes = new();
-    private static List<string> tokens = new();
-    private static List<string> identifiers = new();
+    private static readonly List<string> dataTypes = new();
+    private static readonly List<string> tokens = new();
+    private static readonly List<string> identifiers = new();
 
     public static bool IsLexicallyCorrect(string expression)
     {
@@ -48,7 +48,6 @@ public class LexicalAnalyzer
         dataTypes.Add("long");
         dataTypes.Add("short");
         dataTypes.Add("byte");
-
 
         identifiers.Add("<identifier>");
         identifiers.Add("<data_type>");
