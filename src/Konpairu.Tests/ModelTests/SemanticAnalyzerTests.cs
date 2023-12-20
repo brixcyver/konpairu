@@ -10,7 +10,7 @@ namespace Konpairu.Tests.ModelTests
 {
     public class SemanticAnalyzerTests
     {
-        private SemanticAnalyzer semanticAnalyzer;
+        private readonly SemanticAnalyzer semanticAnalyzer;
 
         public SemanticAnalyzerTests()
         {

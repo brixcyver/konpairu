@@ -11,7 +11,7 @@ namespace Konpairu.Tests.ModelTests
 {
     public class LexicalAnalyzerTests
     {
-        private LexicalAnalyzer lexicalAnalyzer;
+        private readonly LexicalAnalyzer lexicalAnalyzer;
 
         public LexicalAnalyzerTests()
         {
@@ -19,8 +19,9 @@ namespace Konpairu.Tests.ModelTests
         }
 
         [Theory]
-        [InlineData(";a int 5=", true)]
+        [InlineData("boolean 3rror = true;", false)]
         [InlineData("for while if", false)]
+        [InlineData(";a int 5=", true)]
         public void LexicalAnalyzer_IsLexicallyCorrect_ReturnsBool(string expression, bool expected)
         {
             var result = lexicalAnalyzer.IsLexicallyCorrect(expression);

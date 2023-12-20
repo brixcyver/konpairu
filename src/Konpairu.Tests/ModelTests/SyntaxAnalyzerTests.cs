@@ -10,7 +10,7 @@ namespace Konpairu.Tests.ModelTests
 {
     public class SyntaxAnalyzerTests
     {
-        private SyntaxAnalyzer syntaxAnalyzer;
+        private readonly SyntaxAnalyzer syntaxAnalyzer;
 
         public SyntaxAnalyzerTests()
         {
@@ -18,8 +18,9 @@ namespace Konpairu.Tests.ModelTests
         }
 
         [Theory]
+        [InlineData("false =; a boolean", false)]
+        [InlineData("int b = \"bravo\";", true)]
         [InlineData("String a = 5;", true)]
-        [InlineData("false a =; boolean", false)]
         public void SyntaxAnalyzer_IsSyntacticallyCorrect_ReturnsBool(string expression, bool expected)
         {
             var result = syntaxAnalyzer.IsSyntacticallyCorrect(expression);
