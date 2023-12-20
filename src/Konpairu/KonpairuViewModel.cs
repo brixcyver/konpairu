@@ -12,8 +12,16 @@ namespace Konpairu
 {
     public partial class KonpairuViewModel : ObservableObject
     {
-        public KonpairuViewModel()
+        private readonly LexicalAnalyzer lexicalAnalyzer;
+        private readonly SyntaxAnalyzer syntaxAnalyzer;
+        private readonly SemanticAnalyzer semanticAnalyzer;
+
+        public KonpairuViewModel(LexicalAnalyzer lexicalAnalyzer, SyntaxAnalyzer syntaxAnalyzer, SemanticAnalyzer semanticAnalyzer)
         {
+            this.lexicalAnalyzer = lexicalAnalyzer;
+            this.syntaxAnalyzer = syntaxAnalyzer;
+            this.semanticAnalyzer = semanticAnalyzer;
+
             Title = "Konpairu";
 
             isLexicallyCorrect = false;
@@ -122,7 +130,7 @@ namespace Konpairu
                     return;
                 }
 
-                if (!LexicalAnalyzer.IsLexicallyCorrect(Expression.Replace("\r", "")))
+                if (!lexicalAnalyzer.IsLexicallyCorrect(Expression.Replace("\r", "")))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
                         $"The expression is lexically incorrect", "OK");
@@ -172,7 +180,7 @@ namespace Konpairu
                     return;
                 }
 
-                if (!SyntaxAnalyzer.IsSyntacticallyCorrect(Expression.Replace("\r", "")))
+                if (!syntaxAnalyzer.IsSyntacticallyCorrect(Expression.Replace("\r", "")))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
                         $"The expression is syntactically incorrect", "OK");
@@ -246,7 +254,7 @@ namespace Konpairu
                     return;
                 }
 
-                if (!SemanticAnalyzer.IsSemanticallyCorrect(Expression.Replace("\r", "")))
+                if (!semanticAnalyzer.IsSemanticallyCorrect(Expression.Replace("\r", "")))
                 {
                     await Shell.Current.CurrentPage.DisplayAlert("Incorrect!",
                         $"The expression is semantically incorrect", "OK");

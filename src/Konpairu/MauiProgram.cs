@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Konpairu.Models;
 using Microsoft.Extensions.Logging;
 
 namespace Konpairu
@@ -24,6 +25,9 @@ namespace Konpairu
             builder.Services.AddSingleton<KonpairuPage>();
             builder.Services.AddSingleton<KonpairuViewModel>();
             builder.Services.AddSingleton<AboutPage>();
+            builder.Services.AddSingleton<LexicalAnalyzer>();
+            builder.Services.AddSingleton<SyntaxAnalyzer>();
+            builder.Services.AddSingleton<SemanticAnalyzer>();
 
             return builder.Build();
         }

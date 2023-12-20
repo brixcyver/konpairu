@@ -9,11 +9,11 @@ namespace Konpairu.Models;
 
 public class SyntaxAnalyzer
 {
-    private static readonly List<string> dataTypes = new();
-    private static readonly List<string> identifiers = new();
-    private static readonly List<string> tokens = new();
+    private readonly List<string> dataTypes = new();
+    private readonly List<string> identifiers = new();
+    private readonly List<string> tokens = new();
 
-    public static bool IsSyntacticallyCorrect(string expression)
+    public bool IsSyntacticallyCorrect(string expression)
     {
         InitializeDataTypes();
 
@@ -35,7 +35,7 @@ public class SyntaxAnalyzer
         return true;
     }
 
-    private static string IdentifyToken(string lexeme)
+    private string IdentifyToken(string lexeme)
     {
         var token = "<identifier>";
 
@@ -51,7 +51,7 @@ public class SyntaxAnalyzer
         return token;
     }
 
-    public static void InitializeDataTypes()
+    private void InitializeDataTypes()
     {
         dataTypes.Clear();
         identifiers.Clear();
@@ -74,7 +74,7 @@ public class SyntaxAnalyzer
         identifiers.Add("<value>");
     }
 
-    private static bool IsValue(string lexeme)
+    private bool IsValue(string lexeme)
     {
         if (lexeme == "true" || lexeme == "false") return true;
 

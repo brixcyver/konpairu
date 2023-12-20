@@ -6,11 +6,11 @@ namespace Konpairu.Models;
 
 public class LexicalAnalyzer
 {
-    private static readonly List<string> dataTypes = new();
-    private static readonly List<string> tokens = new();
-    private static readonly List<string> identifiers = new();
+    private readonly List<string> dataTypes = new();
+    private readonly List<string> tokens = new();
+    private readonly List<string> identifiers = new();
 
-    public static bool IsLexicallyCorrect(string expression)
+    public bool IsLexicallyCorrect(string expression)
     {
         InitializeDataTypes();
 
@@ -33,7 +33,7 @@ public class LexicalAnalyzer
         return true;
     }
 
-    public static void InitializeDataTypes()
+    private void InitializeDataTypes()
     {
         dataTypes.Clear();
         identifiers.Clear();
@@ -56,7 +56,7 @@ public class LexicalAnalyzer
         identifiers.Add("<value>");
     }
 
-    private static string IdentifyToken(string lexeme)
+    private string IdentifyToken(string lexeme)
     {
         var token = "";
 
@@ -74,7 +74,7 @@ public class LexicalAnalyzer
         return token;
     }
 
-    public static bool IsValidVariableName(string variableName)
+    private bool IsValidVariableName(string variableName)
     {
         if (string.IsNullOrEmpty(variableName))
         {
@@ -107,7 +107,7 @@ public class LexicalAnalyzer
         return true;
     }
 
-    private static bool IsReservedKeyword(string variableName)
+    private bool IsReservedKeyword(string variableName)
     {
         string[] keywords = {
             "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const",
@@ -120,7 +120,7 @@ public class LexicalAnalyzer
         return Array.Exists(keywords, keyword => keyword.Equals(variableName));
     }
 
-    private static bool IsValue(string lexeme)
+    private bool IsValue(string lexeme)
     {
         if (lexeme == "true" || lexeme == "false") return true;
 

@@ -10,7 +10,7 @@ namespace Konpairu.Models;
 
 public class SemanticAnalyzer
 {
-    public static bool IsSemanticallyCorrect(string expression)
+    public bool IsSemanticallyCorrect(string expression)
     {
         string[] lexemes = Common.SplitExpression(expression).ToArray();
 
